@@ -1,6 +1,8 @@
 .idea/
-.env
+src/main/assets/.env
 .target/
 target/
+.out/
+out/
 META-INF/MANIFEST.MF
 out/artifacts/DiscordBot_jar/DiscordBot.jar
