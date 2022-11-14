@@ -18,6 +18,7 @@ public class DBConnect {
         String user = config.get("DBID");
         String pw = config.get("DBPW");
         Class.forName("org.mariadb.jdbc.Driver");
+        System.out.println("DB접속 테스트");
         dbConn = DriverManager.getConnection(url, user, pw);
         return dbConn;
     }

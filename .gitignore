@@ -8,3 +8,4 @@ target/classes/events/JoinEventListener.class
 target/classes/events/mc_accountModalListener.class
 target/classes/events/MessageEventListener.class
 target/classes/events/ReadyEventListener.class
+target/classes/support/DBConnect.class
