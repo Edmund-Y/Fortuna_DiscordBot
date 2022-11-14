@@ -1,12 +1,12 @@
 package events;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import support.DBConnect;
+import support.serects;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -15,16 +15,8 @@ import java.sql.ResultSet;
 
 
 public class JoinEventListener extends ListenerAdapter {
-
-    private static Dotenv config;
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-
-        config = Dotenv.configure().load();
-        String dbuser = config.get("DBID");
-        String dbpasswd = config.get("DBPW");
-        String dcname = config.get("dcname");
-
         User user = event.getUser();
 
         PreparedStatement pstmt = null;
@@ -40,7 +32,7 @@ public class JoinEventListener extends ListenerAdapter {
             TextChannel welcomeChannel = null;
             EmbedBuilder embed = new EmbedBuilder();
             int result = 0;
-            embed.setFooter(dcname+" System by moonlight.one");
+            embed.setFooter(serects.dcname()+" System by moonlight.one");
             embed.setColor(Color.green);
 
             switch (event.getGuild().getId()) {

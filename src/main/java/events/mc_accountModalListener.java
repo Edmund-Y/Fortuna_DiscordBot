@@ -1,6 +1,5 @@
 package events;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -8,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import support.DBConnect;
+import support.serects;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -23,7 +23,6 @@ import java.util.regex.Pattern;
 
 public class mc_accountModalListener extends ListenerAdapter {
 
-    private static Dotenv config;
     Pattern pattern = Pattern.compile("^[0-9a-zA-Z_-]*$");
 
     public String mcplayeruuid(String nickname){
@@ -57,10 +56,7 @@ public class mc_accountModalListener extends ListenerAdapter {
 
     @Override
     public void onModalInteraction(@NotNull ModalInteractionEvent event) {
-        config = Dotenv.configure().load();
-        String dbuser = config.get("DBID");
-        String dbpasswd = config.get("DBPW");
-        String dcname = config.get("dcname");
+        String dcname = serects.dcname();
 
         if (event.getModalId().equals("minecraftNickname")) {
             event.deferReply().queue();

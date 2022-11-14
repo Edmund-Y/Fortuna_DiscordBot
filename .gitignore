@@ -6,3 +6,4 @@ target/
 out/
 META-INF/MANIFEST.MF
 out/artifacts/DiscordBot_jar/DiscordBot.jar
+src/main/java/support/serects.java

@@ -4,7 +4,6 @@ import events.JoinEventListener;
 import events.MessageEventListener;
 import events.ReadyEventListener;
 import events.mc_accountModalListener;
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -12,16 +11,14 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import support.serects;
 
 import javax.security.auth.login.LoginException;
 
 public class DiscordBot {
 
-    private static Dotenv config;
-
     public static void main(String[] args) throws LoginException {//psvm
-        config = Dotenv.configure().load();
-        String TOKEN = config.get("TOKEN");
+        String TOKEN = serects.discordtoken();
         String STATS = "D-Day 2.0 준비";
 
         JDABuilder jdaBuilder = JDABuilder.createDefault(TOKEN);
