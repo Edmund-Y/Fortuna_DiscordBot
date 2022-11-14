@@ -1,11 +1,4 @@
 .idea/
 .env
 .target/
-target/classes/Commands/birthdayCommands.class
-target/classes/Commands/mc_accountCommands.class
-target/classes/DiscordBot.class
-target/classes/events/JoinEventListener.class
-target/classes/events/mc_accountModalListener.class
-target/classes/events/MessageEventListener.class
-target/classes/events/ReadyEventListener.class
-target/classes/support/DBConnect.class
+target/
