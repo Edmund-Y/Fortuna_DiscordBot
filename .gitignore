@@ -2,3 +2,5 @@
 .env
 .target/
 target/
+META-INF/MANIFEST.MF
+out/artifacts/DiscordBot_jar/DiscordBot.jar
