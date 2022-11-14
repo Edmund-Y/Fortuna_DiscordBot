@@ -82,7 +82,6 @@ public class JoinEventListener extends ListenerAdapter {
                     embed.setDescription("등록되지 않은 서버입니다.");
                     embed.setColor(Color.RED);
                     embed.addField(event.getGuild().getName() + "서버의", "정보를 서버로 전송합니다.", false);
-                    event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue()
 
                 }
             }
