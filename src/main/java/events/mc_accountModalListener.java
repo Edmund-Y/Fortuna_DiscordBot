@@ -6,9 +6,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import support.DBConnect;
-import support.Emoji;
-import support.serects;
+import support.*;
 
 import java.awt.*;
 import java.io.BufferedReader;
