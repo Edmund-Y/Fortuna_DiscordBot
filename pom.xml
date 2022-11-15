@@ -17,7 +17,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>5.0.0-alpha.21</version>
+            <version>5.0.0-alpha.22</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
@@ -30,4 +30,25 @@
             <version>3.0.9</version>
         </dependency>
     </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <!-- src/main/java 폴더의 xml파일들을 빌드에 포함 -->
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <!-- src/main/resources 폴더의 xml, properties, yml, setting파일들을 빌드에 포함 -->
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <!-- <include>**/*.setting</include>-->
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import support.DBConnect;
+import support.Emoji;
 import support.serects;
 
 import java.awt.*;
@@ -96,7 +97,9 @@ public class mc_accountModalListener extends ListenerAdapter {
                                 embed.setColor(Color.orange);
                                 embed.addField("닉네임", name, false);
                                 embed.addField("고유ID", uuid, false);
-                                event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue();
+                                event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue(message -> {
+                                    message.addReaction(Emoji.emoji_eheck).queue();
+                                });
                             }
                             case "875723042200911893" -> {
                                 //방송
