@@ -33,7 +33,8 @@ public class DiscordBot {
                 .enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_PRESENCES)
                 .addEventListeners(
                         new MessageEventListener(), new JoinEventListener(), new mc_accountModalListener(),
-                        new birthdayCommands(), new mc_accountCommands()
+                        new birthdayCommands(), new mc_accountCommands(),
+                        new scheduleAlert()
                 )
                 .build();
 
