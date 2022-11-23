@@ -95,9 +95,7 @@ public class mc_accountModalListener extends ListenerAdapter {
                                 embed.setColor(Color.orange);
                                 embed.addField("닉네임", name, false);
                                 embed.addField("고유ID", uuid, false);
-                                event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue(message -> {
-                                    message.addReaction(Emoji.emoji_eheck).queue();
-                                });
+                                event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue();
                             }
                             case "875723042200911893" -> {
                                 //방송
