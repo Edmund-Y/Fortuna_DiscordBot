@@ -7,8 +7,8 @@ import org.jetbrains.annotations.NotNull;
 public class MessageEventListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
-        super.onMessageReceived(event);
-
-        System.out.println("User send: " + event.getMessage().getContentDisplay());
+        if (!event.getMember().getUser().isBot()) {
+            System.out.println("User send: " + event.getMessage().getContentDisplay());
+        }
     }
 }

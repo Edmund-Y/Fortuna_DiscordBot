@@ -1,8 +1,10 @@
 package events;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +31,7 @@ public class mc_accountModalListener extends ListenerAdapter {
         URL url = null;
         String uuid = null;
         JSONObject jsonObj = null;
+        Role role = null;
 
         try {
             url = new URL("https://api.mojang.com/users/profiles/minecraft/"+nickname);
@@ -56,9 +59,9 @@ public class mc_accountModalListener extends ListenerAdapter {
     @Override
     public void onModalInteraction(@NotNull ModalInteractionEvent event) {
         String dcname = serects.dcname();
+        Role role = null;
 
         if (event.getModalId().equals("minecraftNickname")) {
-            event.deferReply().queue();
             String name = event.getValue("minecraftNickname").getAsString();
             String uuid = mcplayeruuid(name);;
             EmbedBuilder embed = new EmbedBuilder();
@@ -81,6 +84,11 @@ public class mc_accountModalListener extends ListenerAdapter {
 
                     try {
                         Connection conn = DBConnect.getConnection();
+                        embed.setTitle("마인크래프트 계정 등록!");
+                        embed.setDescription(dcname + "의 모든 콘텐츠서버에 접속이 가능합니다.");
+                        embed.setColor(Color.orange);
+                        embed.addField("닉네임", name, false);
+                        embed.addField("고유ID", uuid, false);
                         switch (event.getGuild().getId()) {
                             case "1026881171507921036" -> {
                                 //일반용
@@ -90,15 +98,26 @@ public class mc_accountModalListener extends ListenerAdapter {
                                 pstmt.setString(2, event.getUser().getId());
                                 result = pstmt.executeUpdate();
 
-                                embed.setTitle("마인크래프트 계정 등록!");
-                                embed.setDescription(dcname + "의 모든 콘텐츠서버에 접속이 가능합니다.");
-                                embed.setColor(Color.orange);
-                                embed.addField("닉네임", name, false);
-                                embed.addField("고유ID", uuid, false);
                                 event.getHook().sendMessage("").setEmbeds(embed.build()).setEphemeral(true).queue();
                             }
-                            case "875723042200911893" -> {
+                            case "940506901911851048" -> {
                                 //방송
+                                sql = "UPDATE user_account SET uuid_mc = ? WHERE uuid_dc = ?";
+                                pstmt = conn.prepareStatement(sql);
+                                pstmt.setString(1, uuid);
+                                pstmt.setString(2, event.getUser().getId());
+                                result = pstmt.executeUpdate();
+
+                                role = event.getGuild().getRoleById("1059844555618398319");
+                                event.getGuild().addRoleToMember(event.getMember(), role).queue();
+
+                                event.reply("")
+                                        .addActionRow(
+                                                Button.link("https://discord.com/channels/940506901911851048/1059466179250491442", "공지사항 읽기")
+                                        )
+                                        .setEmbeds(embed.build())
+                                        .setEphemeral(true)
+                                        .queue();
                             }
                             default -> {
                                 embed.setTitle("계정 등록 실패");
